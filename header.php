@@ -1,3 +1,10 @@
+<?php session_start();
+               include('db_connect.php');
+               $sid=session_id();
+                $card="select * from invoke where uid='$sid'";
+                $cards=mysqli_query($conn,$card);
+                
+                ?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -74,7 +81,7 @@
                     <span class="navbar d-block navbar-text pt-0"><b>My Account</b></span></span></a>
             </div>
             <div class="d-inline-block row ms-3">
-                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="#5b5b5b" class="bi bi-cart-dash" viewBox="0 0 16 16">
+               <a href="shopping_card/carddetails.php"> <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="#5b5b5b" class="bi bi-cart-dash" viewBox="0 0 16 16">
                     <path d="M6.5 7a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4z"/>
                     <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
                   </svg>
@@ -83,7 +90,7 @@
                 <span class="navbar d-inline-block link-dark"><small>My Cart</small>
                     <span class="navbar d-block navbar-text pt-0"><b>266.56<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-currency-euro" viewBox="0 0 16 16">
                         <path d="M4 9.42h1.063C5.4 12.323 7.317 14 10.34 14c.622 0 1.167-.068 1.659-.185v-1.3c-.484.119-1.045.17-1.659.17-2.1 0-3.455-1.198-3.775-3.264h4.017v-.928H6.497v-.936c0-.11 0-.219.008-.329h4.078v-.927H6.618c.388-1.898 1.719-2.985 3.723-2.985.614 0 1.175.05 1.659.177V2.194A6.617 6.617 0 0 0 10.341 2c-2.928 0-4.82 1.569-5.244 4.3H4v.928h1.01v1.265H4v.928z"/>
-                        </svg></b></span></span> 
+                        </svg></b></span></span> </a>
             </div>
         </div>
         <li class="nav-item">
@@ -95,7 +102,6 @@
                 <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#5b5b5b"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M16.66 4.52l2.83 2.83-2.83 2.83-2.83-2.83 2.83-2.83M9 5v4H5V5h4m10 10v4h-4v-4h4M9 15v4H5v-4h4m7.66-13.31L11 7.34 16.66 13l5.66-5.66-5.66-5.65zM11 3H3v8h8V3zm10 10h-8v8h8v-8zm-10 0H3v8h8v-8z"/></svg> Brands
                 </a>
                 <?php 
-                include('db_connect.php');
                 $query="select * from brands";
                 $elements=$conn->query($query);?>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -123,7 +129,6 @@
                 </svg> Categories
                 </a>
                 <?php 
-                include('db_connect.php');
                 $query="select * from category";
                 $elements=$conn->query($query);?>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
