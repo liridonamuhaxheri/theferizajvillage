@@ -173,7 +173,7 @@ a:hover {
 }
 
 #code {
-    background-image: linear-gradient(to left, rgba(255, 255, 255, 0.253), rgba(255, 255, 255, 0.185)), url("https://img.icons8.com/small/16/000000/long-arrow-right.png");
+    background-image: linear-gradient(to left, rgba(255, 255, 255, 0.253), rgba(255, 255, 255, 0.185));
     background-repeat: no-repeat;
     background-position-x: 95%;
     background-position-y: center
@@ -184,7 +184,6 @@ session_start();
 include("../db_connect.php");
 
 $sid=session_id();
-
 $query="select * from products p,invoke i where p.pid=i.pid and i.sid='$sid'";
 $result=mysqli_query($conn,$query);
 $nr=mysqli_num_rows($result);
@@ -206,7 +205,7 @@ $total=0;
             <div class="row border-top border-bottom">
                 <div class="row main align-items-center">
                
-                    <div class="col-2"><img class="img-fluid" src="<?= $row->pimage?>"></div>
+                    <div class="col-2"><img class="img-fluid" src="../<?= $row->pimage?>"></div>
                     <div class="col">
                         <div class="row"><?=$row->pname;?></div>
                     </div>
@@ -220,23 +219,45 @@ $total=0;
         <div class="col-md-4 summary">
             <div>
                 <h5><b>Summary</b></h5>
+                <h4 id="error"><b></b></h4>
             </div>
             <hr>
             <div class="row">
                 <div class="col" style="padding-left:0;"><?php $nr; ?></div>
                 <div class="col text-right">&euro;<?php echo $total;?></div>
             </div>
-            <form>
+            <form action="checkout.php" method="post" onsubmit="return checkform()">
                 <p>SHIPPING</p> <select>
                     <option class="text-muted">Standard-Delivery- &euro;2.00</option>
                 </select>
-                <p>GIVE CODE</p> <input id="code" placeholder="Enter your code">
-            </form>
+                <p class="text-center">LOGIN AND CHECKOUT</p> <input id="username" name="email" placeholder="username">
+                <input name="password" id="password" type="password" placeholder="password">
+                <input type="hidden" name="sid" value="<?php echo $sid; ?>">
             <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
                 <div class="col">TOTAL PRICE</div>
-                <div class="col text-right">&euro;<?php echo $total+2 ?></div>
+                <div class="col text-right">&euro;<?php echo $total+2 ?><input type="hidden" name="total" value="<?php echo $total+2 ?>"></div>
             </div> 
-            <a href="#" class="btn btn-dark" >CHECKOUT</a>
+            <input type="submit" class="btn btn-dark"value="CHECKOUT">
+            </form>
         </div>
     </div>
 </div>
+<script>
+    function checkform(){
+            username=document.getElementById('username');
+            password=document.getElementById('password');
+            message=document.getElementById('error');
+            if(username.value==""|| username.value==null)
+            {
+                message.innerHTML="To check out, You must Login first! If you do not have ne account <a href='../formregister.html' target='_blank'>register</a>"
+                username.focus();
+                return false;
+            }
+            if(password.value==""|| password.value==null)
+            {
+                message.innerHTML="You must write a password for login";
+                password.focus();
+                return false;
+            }
+        }
+            </script>

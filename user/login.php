@@ -15,7 +15,8 @@ if($num==1)
 }
 else
 {
-    include ("formlogin.html");
     echo"<h2> Wrong email or password! </h2>";
+    include ("formlogin.html");
+    
 }
 ?>

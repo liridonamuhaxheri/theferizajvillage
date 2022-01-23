@@ -75,6 +75,7 @@
 </style>
 <?php 
  include('../db_connect.php');
+ if (isset($_SESSION['user'])){
  $uid= $_SESSION['user'];
     $query="select * from users where uid=$uid"; 
     $elements=$conn->query($query);
@@ -164,3 +165,4 @@
                         
                     </div>
                 </div>
+                <?php } include('account.php');

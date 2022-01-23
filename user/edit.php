@@ -1,4 +1,5 @@
 <?php 
+ if (isset($_SESSION['user'])){
 include("../db_connect.php");
 $id=$_POST['uid'];
 $name=$_POST['uname'];
@@ -20,4 +21,5 @@ $query="update users set uname='$name',usurname='$lastname',uemail='$email',upho
 mysqli_query($conn,$query);
 session_start();
 include("profile.php");
-?>
+ }
+include('account.php');?>
