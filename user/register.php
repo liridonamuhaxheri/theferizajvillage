@@ -18,5 +18,4 @@ $target_dir = "../images/user/";
 $query="insert into users values('NULL','$name','$lastname','$email','$phone','$password','$gender','$roadname','$housenum','$city','$comment','$image')";
 mysqli_query($conn,$query);
 echo"<h2>Registered Succesfully!</h2>";
-include("formlogin.html");
-?>
+include("formlogin.html");?>
