@@ -1,7 +1,5 @@
-# Software Engineering
-
-
-
+# The ferizaj village 
+An E-commerce website created as a school-project with pure php. Contains client profile (login/edit/signup) products categorized depending on the brand name (shop name) also into categories (women/kids/men) and admin side with crud operations (insert/edit/delete) for products, employees and categories as well. You can add products into a shopping card and place an order. You will receive a invoice button for printing the order.
 ## Getting started
 
 To make it easy for you to get started with GitLab, here's a list of recommended next steps.
